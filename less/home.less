@@ -252,6 +252,7 @@ img {
         background-repeat: no-repeat;
         background-position: 50% 4%;
         background-size: ~"calc(350px + 40vw)";
+        opacity: 0;
     }
 
 
@@ -291,6 +292,7 @@ img {
     // max-width: 290px;
     min-width: 289px;
     max-width: ~"calc(320px + 2vw)";
+    width: 100%;
     min-height: 60px;
     margin-top: 0;
     padding: 0 36px;
@@ -478,12 +480,19 @@ img {
     z-index: 99;
 
     &:before {
+        // content: '';
+        // position: absolute;
+        // width: 100%;
+        // height: 30px;
+        // top: 20%;
+        // background: linear-gradient(180deg, rgb(8 7 7) 0%, #080707 50%, rgba(0, 0, 0, 0) 100%);
+
         content: '';
         position: absolute;
         width: 100%;
-        height: 30px;
-        top: 20%;
-        background: linear-gradient(180deg, rgb(8 7 7) 0%, #080707 50%, rgba(0, 0, 0, 0) 100%);
+        height: calc(80px + 3.4vw);
+        top: calc(59% - 50px);
+        background: linear-gradient(180deg, #080707 0%, #080707 50%, rgba(0, 0, 0, 0) 100%);
     }
 }
 
@@ -561,8 +570,11 @@ img {
         max-width: 100%;
         background-position: top center;
         background-color: #030303;
-        background-size: ~"calc(350px + 40vw)";
+        background-size: 1000px;
         background-repeat: no-repeat;
+
+        // top: ~"calc(-3% + -3vw)";
+        top: ~"calc(-8% - .2vw + 32px)";
     }
 
     .wrapper {
@@ -767,6 +779,7 @@ img {
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
+
     }
 
 
@@ -796,6 +809,84 @@ img {
     .como-funciona__icon--access img {
         width: 137px;
     }
+
+    /* Linha inferior */
+    .como-funciona__bottom-line {
+        position: relative;
+        z-index: 99999;
+        min-height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+
+        .cta-button {
+            position: relative;
+            z-index: 3;
+            margin: 0 auto;
+            overflow: visible;
+            isolation: isolate;
+            box-shadow: 0 0 0 3px rgba(132, 130, 130, 0.25);
+
+            &::before {
+                z-index: 0;
+            }
+
+            .cta-button__light {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 1;
+                width: 112%;
+                height: 118%;
+                pointer-events: none;
+                opacity: 0.82;
+                background: radial-gradient(ellipse at center, rgba(255, 236, 187, 0.92) 0%, rgba(255, 225, 171, 0.48) 34%, rgba(227, 197, 142, 0.2) 58%, rgba(227, 197, 142, 0) 76%);
+                filter: blur(22px);
+                border-radius: 999px;
+                .translate(-50%, -50%);
+                -webkit-transition: opacity .25s ease, filter .25s ease, -webkit-transform .25s ease;
+                -moz-transition: opacity .25s ease, filter .25s ease, -moz-transform .25s ease;
+                -ms-transition: opacity .25s ease, filter .25s ease, -ms-transform .25s ease;
+                -o-transition: opacity .25s ease, filter .25s ease, -o-transform .25s ease;
+                transition: opacity .25s ease, filter .25s ease, transform .25s ease;
+            }
+
+            span {
+                position: relative;
+                z-index: 2;
+            }
+
+            &:hover {
+                box-shadow: 0 0 0 3px rgba(132, 130, 130, 0.25), 0 22px 56px rgba(255, 225, 171, 0.4);
+
+                .cta-button__light {
+                    opacity: 1;
+                    filter: blur(26px);
+                    -webkit-transform: translate(-50%, -50%) scale(1.08);
+                    -moz-transform: translate(-50%, -50%) scale(1.08);
+                    -ms-transform: translate(-50%, -50%) scale(1.08);
+                    -o-transform: translate(-50%, -50%) scale(1.08);
+                    transform: translate(-50%, -50%) scale(1.08);
+                }
+            }
+        }
+
+        .como-funciona__bottom-divider {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 2;
+            width: 100vw;
+            pointer-events: none;
+            .translate(-50%, -50%);
+        }
+
+        .cta-button {
+            top: 50%;
+            .translate(0, -50%);
+        }
+    }
 }
 
 .querie(screen, 768px, {
@@ -817,6 +908,16 @@ img {
 
         .como-funciona__text {
             width: calc(100% - 190px);
+        }
+
+        .como-funciona__bottom-line {
+            min-height: 205px;
+            // margin-top: 28px;
+            padding-top: 22px;
+
+            .cta-button {
+                margin: 0 auto;
+            }
         }
     }
 });
@@ -862,6 +963,7 @@ img {
 
         .como-funciona__note {
             margin-top: 24px;
+
         }
     }
 });
@@ -914,6 +1016,7 @@ img {
 
         .como-funciona__note {
             font-size: 15px;
+            padding: 0 50px;
         }
 
         .como-funciona__button {
@@ -925,3 +1028,55 @@ img {
         }
     }
 });
+
+.como-funciona__bottom-line .cta-button::before {
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle, rgb(240 228 202), #1b1b1b00 50%);
+    opacity: 1;
+    pointer-events: none;
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 197px;
+    filter: blur(80px);
+}
+
+.como-funciona__bottom-line .cta-button {
+    cursor: pointer;
+}
+
+.como-funciona__bottom-line .cta-button::after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    z-index: 222;
+    height: 100%;
+    cursor: pointer;
+}
+
+
+
+.como-funciona__bottom-line {
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        bottom: 30%;
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(270deg, #080808 1.37%, #3e3933 45.95%, #080808 90.53%);
+        filter: blur(30px);
+        max-width: 800px;
+        opacity: .5;
+    }
+}
+
+
+.como-funciona .como-funciona__bottom-line .cta-button {
+    position: absolute;
+    top: ~"calc(80% - 30px + 1.5vw)";
+    .translate(0, -100%);
+}
