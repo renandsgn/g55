@@ -91,7 +91,73 @@ const initPropositoNavMarquee = () => {
     }
 };
 
+const initEcosystemCards = () => {
+    const grid = document.querySelector('[data-ecosystem-grid]');
+    const textTarget = document.querySelector('.ecosystem__text-target');
+
+    if (!grid || !textTarget) {
+        return;
+    }
+
+    const cards = Array.from(grid.querySelectorAll('.ecosystem-card'));
+    const defaultText = textTarget.dataset.defaultText || textTarget.textContent;
+    const mobileQuery = window.matchMedia('(max-width: 768px)');
+    let changeTimer = null;
+
+    const setDescription = (text) => {
+        window.clearTimeout(changeTimer);
+        textTarget.classList.add('is-changing');
+
+        changeTimer = window.setTimeout(() => {
+            textTarget.textContent = text;
+            textTarget.classList.remove('is-changing');
+        }, 250);
+    };
+
+    const clearActiveCards = () => {
+        cards.forEach((card) => card.classList.remove('is-active'));
+    };
+
+    cards.forEach((card) => {
+        card.setAttribute('tabindex', '0');
+
+        const activateCard = () => {
+            if (mobileQuery.matches) {
+                return;
+            }
+
+            clearActiveCards();
+            card.classList.add('is-active');
+            setDescription(card.dataset.description || defaultText);
+        };
+
+        card.addEventListener('mouseenter', activateCard);
+        card.addEventListener('focus', activateCard);
+    });
+
+    grid.addEventListener('mouseleave', () => {
+        if (mobileQuery.matches) {
+            return;
+        }
+
+        clearActiveCards();
+        setDescription(defaultText);
+    });
+
+    grid.addEventListener('focusout', (event) => {
+        if (mobileQuery.matches) {
+            return;
+        }
+
+        if (!grid.contains(event.relatedTarget)) {
+            clearActiveCards();
+            setDescription(defaultText);
+        }
+    });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     initFixedSectionBackground();
     initPropositoNavMarquee();
+    initEcosystemCards();
 });
