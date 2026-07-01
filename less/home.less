@@ -565,13 +565,13 @@ img {
         content: '';
         position: absolute;
         inset: 0;
-        background: url(../img/bg_como_funciona.svg);
+        background-image: linear-gradient(180deg, rgba(2, 2, 1, 0) 0%, #020201 100%), url(../img/bg_como_funciona.svg);
         pointer-events: none;
         max-width: 100%;
-        background-position: top center;
+        background-position: center 1000px, top center;
         background-color: #030303;
-        background-size: 1000px;
-        background-repeat: no-repeat;
+        background-size: 100% 240px, 1000px auto;
+        background-repeat: no-repeat, no-repeat;
 
         // top: ~"calc(-3% + -3vw)";
         top: ~"calc(-8% - .2vw + 32px)";
@@ -840,7 +840,8 @@ img {
 
         .cta-button {
             position: absolute;
-            top: ~"calc(55% - 5px + 1.5vw)";
+            // top: ~"calc(55% - 5px + 1.5vw)";
+            top: ~"calc(55% + 25px + 1.5vw)";
             left: 0;
             right: 0;
             z-index: 5;
@@ -1282,6 +1283,21 @@ img {
 
 @media screen and (min-width: 1400px) {
     .como-funciona::after {
-        background-size: ~"calc(1000px + 10vw)";
+        background-position: center ~"calc(1000px + 10vw)", top center;
+        background-size: 100% 240px, ~"calc(1000px + 10vw)" auto;
+    }
+}
+
+
+
+
+/* Propósito */
+
+
+.proposito-g55 {
+    .wrapper-icone {
+        backdrop-filter: blur(8px);
+        display: table;
+        margin: 0 auto 30px;
     }
 }
