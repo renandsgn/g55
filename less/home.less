@@ -568,9 +568,9 @@ img {
         background-image: linear-gradient(180deg, rgba(2, 2, 1, 0) 0%, #020201 100%), url(../img/bg_como_funciona.svg);
         pointer-events: none;
         max-width: 100%;
-        background-position: center 1000px, top center;
+        background-position: center 920px, top center;
         background-color: #030303;
-        background-size: 100% 240px, 1000px auto;
+        background-size: 100% 320px, 1000px auto;
         background-repeat: no-repeat, no-repeat;
 
         // top: ~"calc(-3% + -3vw)";
@@ -935,18 +935,30 @@ img {
     position: relative;
     z-index: 1;
     width: 100%;
-    min-height: 604px;
+    min-height: 724px;
     margin: -200px 0 0;
-    padding: 260px 0 0;
+    padding: 160px 0 ~"clamp(0px, calc(50px + 3vw), 120px)";
     overflow: hidden;
-    background: linear-gradient(180deg, rgba(3, 2, 2, 0) 0%, #030202 132px);
+    isolation: isolate;
+    background: transparent;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background: linear-gradient(270deg, #080808 1.37%, #1B1917 45.95%, #080808 90.53%);
+        -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .28) 54px, #000 158px);
+        mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .28) 54px, #000 158px);
+    }
 
     .proposito-g55__bg-lights {
         position: absolute;
-        inset: -96px 0 0;
-        z-index: 0;
+        inset: -120px 0 0;
+        z-index: 1;
         pointer-events: none;
-        opacity: 1;
+        opacity: .36;
         mix-blend-mode: screen;
 
         &::before,
@@ -955,17 +967,19 @@ img {
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 58%;
-            opacity: .7;
-            background: url(../img/overlay-chamada.webp) center top / cover no-repeat;
+            width: ~"calc(340px + 18vw)";
+            opacity: .5;
+            background: url(../img/overlay-chamada.webp) left center / cover no-repeat;
+            -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000 13%, #000 68%, rgba(0, 0, 0, 0) 100%);
+            mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000 13%, #000 68%, rgba(0, 0, 0, 0) 100%);
         }
 
         &::before {
-            left: 0;
+            left: -3vw;
         }
 
         &::after {
-            right: 0;
+            right: -3vw;
             -webkit-transform: scaleX(-1);
             -moz-transform: scaleX(-1);
             -ms-transform: scaleX(-1);
@@ -976,13 +990,20 @@ img {
 
     .wrapper {
         position: relative;
-        z-index: 2;
+        z-index: 3;
     }
 
     .proposito-g55__content {
         max-width: 560px;
         margin: 0 auto;
         text-align: center;
+    }
+
+    .wrapper-icone {
+        display: table;
+        margin: 80px auto 30px;
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
     }
 
     .proposito-g55__icon {
@@ -1019,43 +1040,585 @@ img {
         font-weight: 400;
         color: #8B7E68;
 
-        &::before {
-            content: '';
-            position: absolute;
-            top: .36em;
-            left: 0;
-            width: 12px;
-            height: 12px;
-            border: 1px solid #8B7E68;
-            .border-radius(50%);
-        }
+
     }
 
     .proposito-g55__nav {
-        position: absolute;
-        right: 0;
-        bottom: 62px;
-        left: 0;
-        z-index: 2;
-        min-height: 84px;
-        padding: 0 12px;
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        margin-top: ~"clamp(0px, calc(50px + 3vw), 120px)";
+        min-height: 92px;
+        overflow: hidden;
         border-top: 1px solid rgba(255, 236, 187, .08);
         border-bottom: 1px solid rgba(255, 236, 187, .08);
-        background: linear-gradient(90deg, rgba(16, 14, 12, .68) 0%, rgba(35, 30, 24, .78) 50%, rgba(16, 14, 12, .68) 100%);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        background: linear-gradient(270deg, #080808 1.37%, #1B1917 45.95%, #080808 90.53%);
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 236, 187, .04), inset 0 -1px 0 rgba(255, 236, 187, .04), 0 20px 70px rgba(0, 0, 0, .36);
+        -moz-box-shadow: inset 0 1px 0 rgba(255, 236, 187, .04), inset 0 -1px 0 rgba(255, 236, 187, .04), 0 20px 70px rgba(0, 0, 0, .36);
+        box-shadow: inset 0 1px 0 rgba(255, 236, 187, .04), inset 0 -1px 0 rgba(255, 236, 187, .04), 0 20px 70px rgba(0, 0, 0, .36);
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 2;
+            width: 220px;
+            pointer-events: none;
+        }
+
+        &::before {
+            left: 0;
+            background: linear-gradient(90deg, #080808 0%, rgba(8, 8, 8, .84) 34%, rgba(8, 8, 8, 0) 100%);
+        }
+
+        &::after {
+            right: 0;
+            background: linear-gradient(270deg, #080808 0%, rgba(8, 8, 8, .84) 34%, rgba(8, 8, 8, 0) 100%);
+        }
+
+        .proposito-g55__nav-track {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            width: ~"calc(var(--proposito-nav-group-width, 100vw) * 2)";
+            min-width: ~"calc(var(--proposito-nav-group-width, 100vw) * 2)";
+            min-height: 92px;
+            will-change: transform;
+            -webkit-animation: proposito-g55-marquee 48s linear infinite;
+            -moz-animation: proposito-g55-marquee 48s linear infinite;
+            -ms-animation: proposito-g55-marquee 48s linear infinite;
+            -o-animation: proposito-g55-marquee 48s linear infinite;
+            animation: proposito-g55-marquee 48s linear infinite;
+        }
+
+        .proposito-g55__nav-group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: var(--proposito-nav-gap, 72px);
+            flex: 0 0 auto;
+            width: var(--proposito-nav-group-width, 100vw);
+            min-height: 92px;
+            padding: 0 var(--proposito-nav-edge, 36px);
+        }
 
         span {
             display: block;
+            min-width: 0;
+            flex: 0 0 auto;
+            padding: 0 !important;
             font-size: 29px;
             line-height: 1;
             font-weight: 700;
             color: rgba(202, 182, 137, .68);
+            text-align: center;
             white-space: nowrap;
         }
     }
 }
+
+/* G55 IS */
+.g55-is {
+    position: relative;
+    padding: 92px 0 128px;
+    overflow: hidden;
+    background: #030202;
+    border-top: solid 1px #CAB689;
+
+    .wrapper {
+        max-width: 1200px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .g55-is__header {
+        max-width: 680px;
+        margin: 0 auto 58px;
+        text-align: center;
+    }
+
+    .g55-is__title {
+        margin: 0 0 18px;
+        font-size: 24px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: #FFE1AB;
+        background: linear-gradient(180deg, #E3C58E 0%, #FFE1AB 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        .flex(center, center);
+        gap: 6px;
+
+        img {
+            width: 18px;
+            height: 18px;
+            .flex-shrink(0);
+        }
+    }
+
+    .g55-is__text {
+        margin: 0 auto;
+        font-size: 22px;
+        line-height: 1.2;
+        font-weight: 400;
+        color: #8B7E68;
+    }
+
+    .g55-is__wrapper {
+        width: 100%;
+        .flex(space-between, stretch);
+        gap: 30px;
+    }
+
+    /* Box glass */
+    .g55-is__card {
+        position: relative;
+        width: ~"calc(50% - 15px)";
+        min-height: 430px;
+        padding: 58px 72px 50px;
+        overflow: hidden;
+        isolation: isolate;
+        .border-radius(15px);
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
+
+
+    }
+
+    .g55-is__card--right {
+        padding-left: 92px;
+    }
+
+    /* Conteúdo dos cards */
+    .g55-is__card-heading {
+        margin-bottom: 42px;
+        .flex(flex-start, center);
+        gap: 24px;
+    }
+
+    .g55-is__card-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0;
+        .flex(center, center);
+        .flex-shrink(0);
+
+        img {
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    .g55-is__card-title {
+        font-size: 20px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: #FFE1AB;
+        background: linear-gradient(180deg, #E3C58E 0%, #FFE1AB 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .g55-is__card-list {
+        color: #8B7E68;
+
+        li {
+            .flex(flex-start, flex-start);
+            gap: 20px;
+            margin-bottom: 24px;
+            font-size: 18px;
+            line-height: 1.18;
+            font-weight: 400;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .g55-is__card--left {
+        .g55-is__card-list {
+            max-width: 410px;
+        }
+    }
+
+    .g55-is__card--right {
+        .g55-is__card-list {
+            max-width: 360px;
+        }
+    }
+
+    .g55-is__bullet {
+        width: 18px;
+        height: 18px;
+        margin-top: 2px;
+        .flex(center, center);
+        .flex-shrink(0);
+
+        img {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    .g55-is__bullet--negative {
+        width: 14px;
+        height: 14px;
+        margin-top: 4px;
+
+        img {
+            width: 14px;
+            height: 14px;
+        }
+    }
+}
+
+/* Passos */
+.passos {
+    position: relative;
+    padding: 0 0 128px;
+    overflow: hidden;
+    background: #030202;
+
+    .wrapper {
+        max-width: 1200px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .passos__title {
+        max-width: 520px;
+        margin: 0 auto 58px;
+        text-align: center;
+        font-size: 24px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: #FFE1AB;
+        background: linear-gradient(180deg, #E3C58E 0%, #FFE1AB 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .passos__wrapper {
+        width: 100%;
+        .flex(space-between, flex-start);
+        gap: 48px;
+    }
+
+    .passos__item {
+        width: ~"calc(33.333% - 32px)";
+        text-align: center;
+        .flex-column(flex-start, center);
+    }
+
+    .passos__number {
+        display: block;
+        margin-bottom: 14px;
+        font-size: 82px;
+        line-height: .95;
+        font-weight: 700;
+        color: #D6C69D;
+    }
+
+    .passos__icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 20px;
+        background: rgba(214, 198, 157, .36);
+        .border-radius(10px);
+        .flex(center, center);
+
+        img {
+            width: 34px;
+            height: 34px;
+            display: block;
+        }
+    }
+
+    .passos__item-title {
+        margin: 0 0 16px;
+        font-size: 22px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: #A39781;
+    }
+
+    .passos__text {
+        max-width: 300px;
+        margin: 0 auto;
+        font-size: 17px;
+        line-height: 1.28;
+        font-weight: 400;
+        color: #8B7E68;
+    }
+}
+
+/* Vantagens */
+.vantagens {
+    position: relative;
+    padding: 0 0 132px;
+    overflow: hidden;
+    isolation: isolate;
+    background: #030202;
+
+    .wrapper {
+        max-width: 1200px;
+        position: relative;
+        z-index: 3;
+        .flex-column(flex-start, center);
+    }
+
+    /* Pattern de fundo */
+    .vantagens__pattern {
+        position: absolute;
+        top: 118px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        opacity: .82;
+        pointer-events: none;
+        background-image: url(../img/pattern_bg_vantagens.svg);
+        background-size: 18px;
+
+    }
+
+    /* Luz central */
+    .vantagens__light {
+        position: absolute;
+        top: -80px;
+        left: 50%;
+        z-index: 2;
+        width: 1063px;
+        max-width: 94vw;
+        height: 483px;
+        opacity: .82;
+        pointer-events: none;
+        mix-blend-mode: screen;
+        background: url(../img/light-bg-vantagens.svg) center center / 100% no-repeat;
+        .transform(translate(-50%, 0));
+
+
+
+        transform: scale(1.2);
+        transform-origin: top;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        height: 320px;
+        background-position-y: 13%;
+        width: 1200px;
+    }
+
+    .vantagens__title {
+        max-width: 620px;
+        margin: 0 auto 32px;
+        padding-top: 50px;
+        text-align: center;
+        font-size: 20px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: #FFE1AB;
+        background: linear-gradient(180deg, #E3C58E 0%, #FFE1AB 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Tabela glass */
+    .vantagens__table {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 992px;
+        overflow: hidden;
+        border-radius: 20px;
+
+        // background: radial-gradient(55.92% 55.92% at 50% 7.63%, rgba(241, 216, 175, .10) 19.23%, rgba(241, 216, 175, .05) 100%),
+        // linear-gradient(314deg, rgba(29, 27, 24, .85) 6.35%, rgba(14, 14, 14, .70) 63.48%);
+        // -webkit-backdrop-filter: blur(18px);
+        // backdrop-filter: blur(18px);
+        // .border-radius(15px);
+        // .box-shadow(0 28px 68px rgba(0, 0, 0, .42));
+        &::after {
+            display: none;
+        }
+    }
+
+    .vantagens__row {
+        min-height: 70px;
+        // background: linear-gradient(90deg, rgba(228, 218, 200, 0.25) 0%, rgba(61, 57, 48, 0.03) 100%);
+        border-bottom: 1px solid rgba(228, 218, 200, .06);
+        .flex(flex-start, stretch);
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    .vantagens__cell {
+        min-height: 58px;
+        padding: 13px 34px;
+        font-size: 15px;
+        line-height: 1.18;
+        font-weight: 400;
+        color: #958975;
+        .flex(flex-start, center);
+    }
+
+    .vantagens__cell--name {
+        width: 49%;
+    }
+
+    .vantagens__cell--description {
+        width: 51%;
+        border-left: 1px solid rgba(228, 218, 200, .08);
+    }
+
+    .vantagens__button {
+        z-index: 3;
+        min-width: 289px;
+        max-width: 289px;
+        min-height: 60px;
+        margin-top: 78px;
+        font-size: 16px;
+    }
+}
+
+@-webkit-keyframes proposito-g55-marquee {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        -webkit-transform: translate3d(var(--proposito-nav-shift, -100vw), 0, 0);
+        transform: translate3d(var(--proposito-nav-shift, -100vw), 0, 0);
+    }
+}
+
+@keyframes proposito-g55-marquee {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        -webkit-transform: translate3d(var(--proposito-nav-shift, -100vw), 0, 0);
+        transform: translate3d(var(--proposito-nav-shift, -100vw), 0, 0);
+    }
+}
+
+.querie(screen, 1920px, {
+    .proposito-g55 {
+        .proposito-g55__nav {
+            .proposito-g55__nav-track {
+                -webkit-animation-duration: 34s;
+                -moz-animation-duration: 34s;
+                -ms-animation-duration: 34s;
+                -o-animation-duration: 34s;
+                animation-duration: 34s;
+            }
+
+            span {
+                &:nth-child(n+6) {
+                    display: none;
+                }
+            }
+        }
+    }
+});
+
+.querie(screen, 1200px, {
+    .proposito-g55 {
+        .proposito-g55__nav {
+            .proposito-g55__nav-track {
+                -webkit-animation-duration: 28s;
+                -moz-animation-duration: 28s;
+                -ms-animation-duration: 28s;
+                -o-animation-duration: 28s;
+                animation-duration: 28s;
+            }
+
+            span {
+                font-size: 24px;
+                padding: 0;
+
+                &:nth-child(n+5) {
+                    display: none;
+                }
+            }
+        }
+    }
+});
+
+.querie(screen, 1015px, {
+    .g55-is {
+        padding: 80px 0 108px;
+
+        .wrapper {
+            max-width: 960px;
+        }
+
+        .g55-is__card {
+            min-height: 390px;
+            padding: 48px 48px 44px;
+        }
+
+        .g55-is__card--right {
+            padding-left: 58px;
+        }
+
+        .g55-is__card-list {
+            li {
+                font-size: 16px;
+                margin-bottom: 21px;
+            }
+        }
+    }
+
+    .passos {
+        padding-bottom: 108px;
+
+        .passos__wrapper {
+            gap: 32px;
+        }
+
+        .passos__item {
+            width: ~"calc(33.333% - 22px)";
+        }
+
+        .passos__number {
+            font-size: 72px;
+        }
+
+        .passos__item-title {
+            font-size: 20px;
+        }
+
+        .passos__text {
+            font-size: 16px;
+        }
+    }
+
+    .vantagens {
+        padding-bottom: 112px;
+
+        .vantagens__pattern {
+            top: 104px;
+        }
+
+        .vantagens__light {
+            top: 84px;
+            max-width: 96vw;
+        }
+    }
+});
 
 .querie(screen, 768px, {
     .como-funciona {
@@ -1091,8 +1654,21 @@ img {
 .querie(screen, 768px, {
     .proposito-g55 {
         margin-top: -124px;
-        padding: 178px 0 0;
-        min-height: 540px;
+        padding: 118px 0 ~"clamp(0px, calc(44px + 3vw), 120px)";
+        min-height: 620px;
+
+        .proposito-g55__bg-lights {
+            opacity: .36;
+
+            &::before,
+            &::after {
+                width: ~"calc(260px + 16vw)";
+            }
+        }
+
+        .wrapper-icone {
+            margin: 60px auto 24px;
+        }
 
         .proposito-g55__icon {
             height: 120px;
@@ -1112,12 +1688,121 @@ img {
         }
 
         .proposito-g55__nav {
-            bottom: 50px;
-            min-height: 74px;
+            margin-top: ~"clamp(0px, calc(44px + 3vw), 120px)";
+            min-height: 76px;
+
+            &::before,
+            &::after {
+                width: 150px;
+            }
+
+            .proposito-g55__nav-track,
+            .proposito-g55__nav-group {
+                min-height: 76px;
+            }
+
+            .proposito-g55__nav-group {
+                padding: 0 var(--proposito-nav-edge, 30px);
+            }
 
             span {
-                font-size: 23px;
+                font-size: 20px;
+                padding: 0;
             }
+        }
+    }
+});
+
+.querie(screen, 768px, {
+    .g55-is {
+        padding: 68px 0 90px;
+
+        .g55-is__header {
+            margin-bottom: 40px;
+        }
+
+        .g55-is__wrapper {
+            .flex-column(flex-start, stretch);
+            gap: 24px;
+        }
+
+        .g55-is__card {
+            width: 100%;
+            min-height: 0;
+            padding: 42px 46px 44px;
+        }
+
+        .g55-is__card--right {
+            padding-left: 46px;
+        }
+
+        .g55-is__card--left,
+        .g55-is__card--right {
+            .g55-is__card-list {
+                max-width: 100%;
+            }
+        }
+    }
+
+    .passos {
+        padding-bottom: 90px;
+
+        .passos__title {
+            margin-bottom: 44px;
+            font-size: 22px;
+        }
+
+        .passos__wrapper {
+            .flex-column(flex-start, center);
+            gap: 46px;
+        }
+
+        .passos__item {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .passos__number {
+            margin-bottom: 12px;
+            font-size: 68px;
+        }
+
+        .passos__text {
+            max-width: 360px;
+        }
+    }
+
+    .vantagens {
+        padding-bottom: 92px;
+
+        .vantagens__pattern {
+            top: 92px;
+            // background-size: 48px 50px;
+        }
+
+        .vantagens__light {
+            top: 76px;
+            width: 840px;
+            height: 382px;
+            opacity: .72;
+        }
+
+        .vantagens__title {
+            margin-bottom: 28px;
+            font-size: 20px;
+        }
+
+        .vantagens__table {
+            max-width: 640px;
+        }
+
+        .vantagens__cell {
+            padding: 17px 28px;
+            font-size: 15px;
+        }
+
+        .vantagens__button {
+            margin-top: 58px;
         }
     }
 });
@@ -1173,16 +1858,36 @@ img {
     .proposito-g55 {
         width: 100%;
         margin-top: -124px;
-        padding: 164px 0 0;
-        min-height: 500px;
+        padding: 100px 0 ~"clamp(0px, calc(40px + 3vw), 120px)";
+        min-height: 590px;
 
         .proposito-g55__bg-lights {
-            opacity: .48;
-            background-size: auto 100%;
+            opacity: .34;
+
+            &::before,
+            &::after {
+                width: ~"calc(150px + 24vw)";
+            }
+
+            &::before {
+                left: -16vw;
+            }
+
+            &::after {
+                right: -16vw;
+            }
         }
 
         .proposito-g55__content {
             max-width: 430px;
+        }
+
+        .wrapper-icone {
+            margin: 52px auto 22px;
+
+            img {
+                width: 130px;
+            }
         }
 
         .proposito-g55__icon {
@@ -1205,16 +1910,168 @@ img {
         }
 
         .proposito-g55__nav {
-            bottom: 42px;
-            min-height: 68px;
-            justify-content: flex-start;
-            gap: 34px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+            margin-top: ~"clamp(0px, calc(40px + 3vw), 120px)";
+            min-height: 70px;
+
+            &::before,
+            &::after {
+                width: 96px;
+            }
+
+            .proposito-g55__nav-track,
+            .proposito-g55__nav-group {
+                min-height: 70px;
+            }
+
+            .proposito-g55__nav-track {
+                -webkit-animation-duration: 28s;
+                -moz-animation-duration: 28s;
+                -ms-animation-duration: 28s;
+                -o-animation-duration: 28s;
+                animation-duration: 28s;
+            }
+
+            .proposito-g55__nav-group {
+                padding: 0 var(--proposito-nav-edge, 24px);
+            }
 
             span {
-                font-size: 21px;
+                font-size: 16px;
+                padding: 0;
             }
+        }
+    }
+});
+
+.querie(screen, 560px, {
+    .g55-is {
+        padding: 58px 0 76px;
+
+        .g55-is__header {
+            max-width: 430px;
+            margin-bottom: 34px;
+        }
+
+        .g55-is__title {
+            // font-size: 20px;
+            padding: 0 35px;
+            box-sizing: border-box;
+        }
+
+        .g55-is__text {
+            font-size: 17px;
+        }
+
+        .g55-is__card {
+            padding: 34px 30px 36px;
+        }
+
+        .g55-is__card--right {
+            padding-left: 30px;
+        }
+
+        .g55-is__card-heading {
+            margin-bottom: 30px;
+        }
+
+        .g55-is__card-list {
+            li {
+                gap: 14px;
+                font-size: 16px;
+            }
+        }
+    }
+
+    .passos {
+        padding-bottom: 76px;
+
+        .passos__title {
+            max-width: 360px;
+            margin-bottom: 38px;
+            font-size: 20px;
+        }
+
+        .passos__wrapper {
+            gap: 40px;
+        }
+
+        .passos__number {
+            font-size: 62px;
+        }
+
+        .passos__icon {
+            width: 58px;
+            height: 58px;
+            margin-bottom: 18px;
+
+            img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        .passos__item-title {
+            margin-bottom: 12px;
+            font-size: 19px;
+        }
+
+        .passos__text {
+            max-width: 310px;
+            font-size: 16px;
+        }
+    }
+
+    .vantagens {
+        padding-bottom: 78px;
+
+        .vantagens__pattern {
+            top: 84px;
+            background-size: 42px 44px;
+        }
+
+        .vantagens__light {
+            top: 62px;
+            width: 680px;
+            height: 309px;
+            opacity: .68;
+        }
+
+        .vantagens__title {
+            max-width: 360px;
+            margin-bottom: 26px;
+            font-size: 19px;
+        }
+
+        .vantagens__table {
+            max-width: 430px;
+            .border-radius(14px);
+        }
+
+        .vantagens__row {
+            min-height: 0;
+            .flex-column(flex-start, stretch);
+        }
+
+        .vantagens__cell {
+            width: 100%;
+            min-height: 0;
+            padding: 15px 24px;
+            font-size: 15px;
+        }
+
+        .vantagens__cell--name {
+            padding-bottom: 6px;
+            font-weight: 600;
+            color: #A39781;
+        }
+
+        .vantagens__cell--description {
+            padding-top: 0;
+            border-left: 0;
+        }
+
+        .vantagens__button {
+            margin-top: 46px;
         }
     }
 });
@@ -1235,6 +2092,43 @@ img {
 });
 
 .querie(screen, 465px, {
+    .vantagens {
+        padding-bottom: 68px;
+
+        .vantagens__title {
+            font-size: 18px;
+        }
+
+        .vantagens__table {
+            max-width: 100%;
+        }
+
+        .vantagens__cell {
+            padding-right: 20px;
+            padding-left: 20px;
+            font-size: 14px;
+        }
+    }
+
+    .proposito-g55 {
+        .proposito-g55__nav {
+
+            &::before,
+            &::after {
+                width: 54px;
+            }
+
+            .proposito-g55__nav-group {
+                padding: 0 var(--proposito-nav-edge, 18px);
+            }
+
+            span {
+                font-size: 16px;
+                padding: 0;
+            }
+        }
+    }
+
     .como-funciona {
         .como-funciona__card {
             padding: 28px 20px;
@@ -1283,21 +2177,7 @@ img {
 
 @media screen and (min-width: 1400px) {
     .como-funciona::after {
-        background-position: center ~"calc(1000px + 10vw)", top center;
-        background-size: 100% 240px, ~"calc(1000px + 10vw)" auto;
-    }
-}
-
-
-
-
-/* Propósito */
-
-
-.proposito-g55 {
-    .wrapper-icone {
-        backdrop-filter: blur(8px);
-        display: table;
-        margin: 0 auto 30px;
+        background-position: center ~"calc(920px + 12.4vw)", top center;
+        background-size: 100% 320px, ~"calc(1000px + 10vw)" auto;
     }
 }
